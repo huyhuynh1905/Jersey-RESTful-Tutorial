@@ -3,12 +3,12 @@ package com.huyhuynh.jersey.JerseyTutorial;
 import java.util.Arrays;
 import java.util.List;
 
+import javax.ws.rs.PathParam;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
-
 import com.sun.xml.internal.bind.v2.runtime.unmarshaller.XsiNilLoader.Array;
 
 @Path("student")
@@ -41,7 +41,26 @@ public class StudentResource {
 	@Path("/repolistxml")
 	@Produces(MediaType.APPLICATION_XML)
 	public List<Student> getListXMLStudentRepo(){
+		System.out.println("getCall");
 		return repo.getList();
+	}
+	
+	//Thêm một đối tượng vào list
+	@POST
+	@Path("/addobjbyxml")
+	public Student addStudentXml(Student st) {
+		repo.setStudent(st);
+		System.out.println("thêm thành công");
+		return st;
+	}
+	//find student by id
+	
+	@GET
+	@Path("/findbyid/{id}")
+	@Produces(MediaType.APPLICATION_XML)
+	public Student findStudent(@PathParam("id") int id) {
+		System.out.println("find");
+		return repo.findByID(id);
 	}
 	
 }

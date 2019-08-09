@@ -13,6 +13,9 @@ public class Student {
 	
 	public Student() {
 		super();
+		this.id = 0;
+		this.name = "";
+		this.point = 0;
 	}
 	public Student(int id, String name, int point) {
 		super();
