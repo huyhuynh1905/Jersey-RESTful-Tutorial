@@ -14,22 +14,34 @@ import com.sun.xml.internal.bind.v2.runtime.unmarshaller.XsiNilLoader.Array;
 @Path("student")
 public class StudentResource {
 
+	//Trả về 1 đối tượng dưới dạng xml
 	@GET
 	@Path("/objectxml")
 	@Produces(MediaType.APPLICATION_XML) //Cầu hình dòng này trả đối tượng về xml
 	public Student getXMLStudent() {
-		Student st1 = new Student("Huy",10);
+		Student st1 = new Student(1,"Huy",10);
 		return st1;
 	}
 	
+	//Trả vể đối tượng dạng list với xml
 	@GET
 	@Path("/listobjectxml")
 	@Produces(MediaType.APPLICATION_XML)
 	public List<Student> getListXMLStudent(){
-		Student st1 = new Student("Huy",10);
-		Student st2 = new Student("Hao",9);
-		Student st3 = new Student("Bảo",8);
+		Student st1 = new Student(1,"Huy",10);
+		Student st2 = new Student(2,"Hao",9);
+		Student st3 = new Student(3,"Bảo",8);
 		List<Student> students = Arrays.asList(st1,st2,st3);
 		return students;
 	}
+	
+	//Sử dụng mock repository(class StudentRepository) để khởi tạo trước list
+	StudentRepository repo = new StudentRepository();
+	@GET
+	@Path("/repolistxml")
+	@Produces(MediaType.APPLICATION_XML)
+	public List<Student> getListXMLStudentRepo(){
+		return repo.getList();
+	}
+	
 }

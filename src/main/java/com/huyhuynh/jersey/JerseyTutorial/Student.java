@@ -6,6 +6,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 public class Student {
 	
+	private int id;
 	private String name;
 	private int point;
 	
@@ -13,10 +14,19 @@ public class Student {
 	public Student() {
 		super();
 	}
-	public Student(String name, int point) {
+	public Student(int id, String name, int point) {
 		super();
+		this.id = id;
 		this.name = name;
 		this.point = point;
+	}
+	
+	
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
 	}
 	public String getName() {
 		return name;
