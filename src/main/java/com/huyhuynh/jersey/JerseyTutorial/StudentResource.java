@@ -63,4 +63,13 @@ public class StudentResource {
 		return repo.findByID(id);
 	}
 	
+	//Trả về đối tượng json và xml
+	@GET
+	@Path("/repogetlist")
+	@Produces(MediaType.APPLICATION_JSON)
+	public List<Student> getListStudentRepo(){
+		System.out.println("getCall");
+		return repo.getList();
+	}
+	
 }
