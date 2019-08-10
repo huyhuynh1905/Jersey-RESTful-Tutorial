@@ -97,4 +97,18 @@ public class StudentRepository {
 		return student;
 	}
 	
+	//update trong csdl dùng put
+	public void updateStudent(Student student) {
+		String query = "update jersey set hoten=?,diem=? where id=?";
+		try {
+			PreparedStatement pr = conn.prepareStatement(query);
+			pr.setString(1, student.getName());
+			pr.setInt(2, student.getPoint());
+			pr.setInt(3, student.getId());
+			pr.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 }
